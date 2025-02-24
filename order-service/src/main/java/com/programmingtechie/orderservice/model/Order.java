@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "t_orders")
@@ -19,7 +20,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String orderNumber;
-    private String skuCode;
-    private BigDecimal price;
-    private Integer quantity;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<OrderLineItems> oderLineItemsList;
 }
