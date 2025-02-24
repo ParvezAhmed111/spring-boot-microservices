@@ -26,7 +26,7 @@ public class OrderService {
     public void placeOrder(OrderRequest orderRequest) {
         Order order= new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
-        List<OrderLineItems> orderLineItems= orderRequest.getOderLineItems()
+        List<OrderLineItems> orderLineItems= orderRequest.getOderLineItemsDtoList()
                 .stream()
                 .map(this::maoToDto)
                 .toList();
@@ -39,8 +39,8 @@ public class OrderService {
     private OrderLineItems maoToDto(OrderLineItemsDto orderLineItemsDto) {
         OrderLineItems orderLineItems = new OrderLineItems();
         orderLineItems.setPrice(orderLineItemsDto.getPrice());
-        orderLineItems.setQuantity(orderLineItems.getQuantity());
-        orderLineItems.setSkuCode(orderLineItems.getSkuCode());
+        orderLineItems.setQuantity(orderLineItemsDto.getQuantity());
+        orderLineItems.setSkuCode(orderLineItemsDto.getSkuCode());
         return orderLineItems;
     }
 }
